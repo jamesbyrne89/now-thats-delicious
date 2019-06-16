@@ -11,14 +11,16 @@ const passport = require('passport');
 const promisify = require('es6-promisify');
 const flash = require('connect-flash');
 const expressValidator = require('express-validator');
-const routes = require('./routes/index');
+const routes = require('./public/routes/index');
 const helpers = require('./helpers');
 const errorHandlers = require('./handlers/errorHandlers');
 
 // create our Express app
 const app = express();
 
-const expressVueMiddleware = expressVue.init();
+const expressVueMiddleware = expressVue.init({
+  rootPath: './views'
+});
 app.use(expressVueMiddleware);
 
 // view engine setup
