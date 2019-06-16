@@ -1,4 +1,4 @@
-const options = require('./config/vueRendererOptions');
+const expressVue = require('express-vue');
 
 const express = require('express');
 const session = require('express-session');
@@ -18,9 +18,8 @@ const errorHandlers = require('./handlers/errorHandlers');
 // create our Express app
 const app = express();
 
-const vueRenderer = require('@doweb/vuexpress').vueRenderer;
-const renderer = vueRenderer(options);
-app.use(renderer);
+const expressVueMiddleware = expressVue.init();
+app.use(expressVueMiddleware);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views')); // this is the folder where we keep our pug files
