@@ -1,3 +1,5 @@
+const options = require('./config/vueRendererOptions');
+
 const express = require('express');
 const session = require('express-session');
 const mongoose = require('mongoose');
@@ -15,6 +17,10 @@ const errorHandlers = require('./handlers/errorHandlers');
 
 // create our Express app
 const app = express();
+
+const vueRenderer = require('@doweb/vuexpress').vueRenderer;
+const renderer = vueRenderer(options);
+app.use(renderer);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views')); // this is the folder where we keep our pug files
@@ -35,13 +41,15 @@ app.use(cookieParser());
 
 // Sessions allow us to store data on visitors from request to request
 // This keeps users logged in and allows us to send flash messages
-app.use(session({
-  secret: process.env.SECRET,
-  key: process.env.KEY,
-  resave: false,
-  saveUninitialized: false,
-  store: new MongoStore({ mongooseConnection: mongoose.connection })
-}));
+app.use(
+  session({
+    secret: process.env.SECRET,
+    key: process.env.KEY,
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+  })
+);
 
 // // Passport JS is what we use to handle our logins
 app.use(passport.initialize());

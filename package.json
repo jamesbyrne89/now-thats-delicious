@@ -8,8 +8,7 @@
   "scripts": {
     "prod": "node ./start.js",
     "watch": "nodemon ./start.js --ignore public/",
-    "start": "concurrently \"npm run client\" \"npm run watch\" \"npm run assets\" --names \"💻,📦\" --prefix name",
-    "client": "npm run serve --prefix views",
+    "start": "concurrently \"npm run watch\" \"npm run assets\" --names \"💻,📦\" --prefix name",
     "assets": "webpack -w --display-max-modules 0",
     "sample": "node ./data/load-sample-data.js",
     "blowitallaway": "node ./data/load-sample-data.js --delete",
@@ -17,6 +16,7 @@
   },
   "browserslist": "last 3 versions",
   "dependencies": {
+    "@doweb/vuexpress": "^1.1.2",
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "connect-flash": "0.1.1",
