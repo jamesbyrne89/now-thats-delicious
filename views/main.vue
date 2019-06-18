@@ -8,5 +8,8 @@ export default {
 </script>
 
 <template>
-  <div id="app">{{ message }}</div>
+  <section>
+    <div id="app">{{ message }}</div>
+    <p id="paragraph">{{ text }}</p>
+  </section>
 </template>

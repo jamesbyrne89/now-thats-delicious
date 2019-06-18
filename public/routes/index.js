@@ -3,7 +3,7 @@ const router = express.Router();
 
 // Do work here
 router.get('/', (req, res) => {
-  res.renderVue('main.vue', { message: 'Hello World' });
+  res.renderVue('main.vue', { message: 'Hello World', text: 'Here is some text too' });
 });
 
 router.get('/test:name', (req, res) => {
